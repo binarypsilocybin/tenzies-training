@@ -7,9 +7,12 @@ export default function App() {
   const [dice, setDice] = useState(allNewDice())
   function allNewDice(){
     const newDice = []
-    for (let i = 0; i < 10; i++){
-      newDice.push(Math.ceil(Math.random() * 6))
-    }
+    for (let i = 0; i < 10; i++) {
+      newDice.push({
+          value: Math.ceil(Math.random() * 6), 
+          isHeld: false
+      })
+  }
     return newDice
   }
 
@@ -17,7 +20,7 @@ export default function App() {
     setDice(allNewDice())
   }
 
-  const diceElements = dice.map(die => <Die value={die} />)
+  const diceElements = dice.map(die => <Die value={die.value} />)
 
   return (
       <main>
